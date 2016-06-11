@@ -1,0 +1,17 @@
+{
+    "name": "Darts",
+    "short_name": "Darts",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#3E6128",
+    "icons": [
+        {
+            "src": "app_icon256.png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "app_icon.svg",
+            "sizes": "48x48"
+        }
+    ]
+}

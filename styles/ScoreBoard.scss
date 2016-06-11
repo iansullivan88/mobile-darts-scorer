@@ -1,0 +1,38 @@
+.score-board {
+
+    .display-number {
+        font-size:5rem;
+    }
+
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .score-button {
+        flex-basis: 31%;
+        margin-bottom: 3%;
+
+        &:nth-child(3n + 1) {
+            margin-left: 0;
+        }
+
+        &:nth-child(3n + 3) {
+            margin-right: 0;
+        }
+    }
+
+    .stats {
+        width:100%;
+        font-size:1.5rem;
+        padding:0.5em;
+        background-color:rgba(255,255,255,0.5);
+        border-radius:5px;
+    }
+
+    .stats td:last-child {
+        text-align:right;
+    }
+
+}

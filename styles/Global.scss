@@ -1,0 +1,30 @@
+@import "_Settings.scss";
+
+html {
+    min-height:100%;
+}
+
+body {
+    min-height:100%;
+    font-family:sans-serif;
+    padding:10px;
+    margin:0;
+    background: $dartsGreen 50% no-repeat;
+    background-size:cover;
+    font-size:14px;
+}
+
+button {
+    cursor:pointer;
+}
+
+.command-button {
+    font-size:2rem;
+    font-weight:bold;
+    background:none;
+    outline:none;
+    padding:5% 0;
+    border: none;
+    background:$dartsRed;
+    -webkit-tap-highlight-color: transparentize(darken($dartsRed, 10%), 0.5);
+}
