@@ -29,7 +29,7 @@ export default class Menu extends React.Component {
         return (
             <aside id="menu">
                 <button onClick={this._menuButtonClicked}>
-                    <img src="/images/menu.svg" alt="Burger Menu"></img>
+                    <img src="images/menu.svg" alt="Burger Menu"></img>
                 </button>
                 <div className={popupClass}>
                     <svg className="arrow">
