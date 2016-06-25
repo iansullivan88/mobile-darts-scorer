@@ -1,6 +1,7 @@
 require('../../styles/ScoreBoard');
 import React from 'react';
 import ScoreButton from './ScoreButton'
+import getOut from '../helpers/outs'
 
 export default class ScoreBoard extends React.Component {
 
@@ -67,6 +68,8 @@ export default class ScoreBoard extends React.Component {
             ? (this._totalScore / this._totalTurns).toFixed(0)
             : "-";
 
+        var out = getOut(this._remaining) || "-";
+
         return (
             <section className="score-board">
                 <div className="display-number">{displayNumber}</div>
@@ -81,6 +84,7 @@ export default class ScoreBoard extends React.Component {
                     <tbody>
                         <tr><td>Turns</td><td>{this._totalTurns}</td></tr>
                         <tr><td>Turn Average</td><td>{average}</td></tr>
+                        <tr><td>Out</td><td>{out}</td></tr>
                     </tbody>
                 </table>
             </section>
