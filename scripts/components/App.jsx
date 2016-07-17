@@ -1,7 +1,7 @@
 require('../../styles/App');
 import React from 'react';
-import ScoreBoard from './ScoreBoard'
-import Menu from './Menu'
+import ScoreBoard from './ScoreBoard';
+import Menu from './Menu';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -15,16 +15,31 @@ export default class App extends React.Component {
         this.refs["scoreBoard"].reset();
     }
 
+    undo() {
+        this.refs["scoreBoard"].undo();
+    }
+
+    scoreChangedHandler(scores) {
+        this.setState({undoEnabled: scores.length > 0});
+    }
+
     menuToggled(visible) {
         this.setState({showOverlay: visible})
     }
 
+    overlayClicked() {
+        this.refs["menu"].close();
+    }
+
     render() {
-        var menuItems = [{text: "New Game", clickHandler: this.restartGame.bind(this)}]
+        var menuItems = [{text: "New Game", clickHandler: this.restartGame.bind(this)}];
+        if (this.state.undoEnabled) {
+            menuItems.push({text: "Undo", clickHandler: this.undo.bind(this)});
+        }
         return (<div id="app">
-                    <ScoreBoard ref="scoreBoard" />
-                    <div className={this.state.showOverlay ? "visible" : ""} id="overlay"></div>
-                    <Menu menuItems={menuItems} menuToggled={this.menuToggled.bind(this)}></Menu>
+                    <ScoreBoard ref="scoreBoard" scoreChangedHandler={this.scoreChangedHandler.bind(this)} />
+                    <div onClick={this.overlayClicked.bind(this)} className={this.state.showOverlay ? "visible" : ""} id="overlay"></div>
+                    <Menu ref="menu" menuItems={menuItems} menuToggled={this.menuToggled.bind(this)}></Menu>
                 </div>);
     }
 }

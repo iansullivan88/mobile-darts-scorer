@@ -1,7 +1,7 @@
 require('../../styles/ScoreBoard');
 import React from 'react';
-import ScoreButton from './ScoreButton'
-import getOut from '../helpers/outs'
+import ScoreButton from './ScoreButton';
+import getOut from '../helpers/outs';
 
 export default class ScoreBoard extends React.Component {
 
@@ -10,6 +10,7 @@ export default class ScoreBoard extends React.Component {
         this._numberClicked = this._numberClicked.bind(this);
         this._okClicked = this._okClicked.bind(this);
         this._cClicked = this._cClicked.bind(this);
+        this._setNewScores = this._setNewScores.bind(this);
         this.state = {
             scores: [],
             enteredNumbers: ""
@@ -31,20 +32,31 @@ export default class ScoreBoard extends React.Component {
             var enteredValue = parseInt(this.state.enteredNumbers);
             var newRemaining = this._remaining - enteredValue;
             if (newRemaining === 0 || newRemaining > 1) {
-                this.setState({scores: this.state.scores.concat([enteredValue])});
+                this._setNewScores(this.state.scores.concat([enteredValue]));
             } else {
-                this.setState({scores: this.state.scores.concat(0)});
+                this._setNewScores(this.state.scores.concat(0));
             }
 
             this.setState({enteredNumbers: ""});
         }
     }
 
+    _setNewScores(newScores) {
+        this.setState({scores: newScores});
+        if (this.props.scoreChangedHandler) {
+            this.props.scoreChangedHandler(newScores);
+        }
+    }
+
+    undo() {
+        var newScores = this.state.scores.slice();
+        newScores.pop();
+        this._setNewScores(newScores);
+    }
+
     reset() {
-        this.setState({
-            scores: [],
-            enteredNumbers: ""
-        });
+        this.setState({enteredNumbers: ""});
+        this._setNewScores([]);
     }
 
     get _totalScore() {

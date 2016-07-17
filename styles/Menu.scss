@@ -25,6 +25,10 @@
         margin:0;
     }
 
+    li:not(:first-child) {
+        border-top: 1px solid #000;
+    }
+
     .arrow {
         width:20px;
         height:10px;
@@ -36,7 +40,7 @@
     .popup {
         opacity:0;
         position:absolute;
-        bottom:-75px;
+        top:50px;
         right:0;
         width:200px;
         transition:opacity 200ms;

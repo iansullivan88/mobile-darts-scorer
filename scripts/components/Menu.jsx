@@ -10,15 +10,22 @@ export default class Menu extends React.Component {
         };
     }
 
+    close() {
+        this._setMenuState(false);
+    }
+
     _menuButtonClicked() {
-        var showMenu = !this.state.showMenu;
-        this.setState({ showMenu: showMenu });
-        this.props.menuToggled(showMenu);
+        this._setMenuState(!this.state.showMenu);
     }
 
     _commandClicked(handler) {
         this._menuButtonClicked();
         handler();
+    }
+
+    _setMenuState(showMenu) {
+        this.setState({ showMenu: showMenu });
+        this.props.menuToggled(showMenu);
     }
 
     render() {
@@ -37,7 +44,7 @@ export default class Menu extends React.Component {
                     </svg>
                     <ul>
                         {this.props.menuItems.map((item, i) =>
-                            <li key="{i}"><button className="command-button" onClick={this._commandClicked.bind(this, item.clickHandler)}>{item.text}</button></li>
+                            <li key={i}><button className="command-button" onClick={this._commandClicked.bind(this, item.clickHandler)}>{item.text}</button></li>
                         )}
                     </ul>
                 </div>
