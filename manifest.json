@@ -1,7 +1,7 @@
 {
     "name": "Darts",
     "short_name": "Darts",
-    "start_url": "./",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#3E6128",
     "icons": [
